@@ -1,0 +1,65 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.11"
+# dependencies = ["package-clickstack-blue", "blue"]
+#
+# [tool.uv.sources]
+# package-clickstack-blue = { git = "https://github.com/getcolors/clickstack.git", rev = "68887b5055a31c11be9a808b6a1fe0974755bb13", subdirectory = "blue" }
+# blue = { git = "https://github.com/getcolors/blue.git", rev = "290f313ead5ca162875c33a049c880da017eae09" }
+#
+# [tool.uv]
+# override-dependencies = ["blue @ git+https://github.com/getcolors/blue.git@290f313ead5ca162875c33a049c880da017eae09"]
+# ///
+#
+# Managed by `bb pin` — do not edit by hand, and never invent a SHA.
+#
+# Stamped by `bb pin`. CLICKSTACK_LIB_ROOT=/path/to/clickstack still overrides the
+# pin with a working tree.
+"""Thin launcher for package-clickstack-blue.
+
+This file is both the skill payload and the repository entry point —
+blue/blue in the repository is a symlink to it. It deliberately holds no
+logic of its own: validation, the graph and the steps all live in the
+package-clickstack-blue library, where the test suite reaches them. A copied
+payload is the one place in this project where code cannot be tested, so
+nothing that can live elsewhere should live here.
+"""
+
+import os
+import subprocess
+import sys
+
+UNPINNED_ERROR = """\
+this launcher carries no clickstack pin.
+It has not been stamped by `bb pin`, which cannot run until the clickstack
+repository has been pushed.
+Point it at a checkout meanwhile: CLICKSTACK_LIB_ROOT=/path/to/clickstack
+(or run through the repository project: cd clickstack/blue && uv run python -m package_clickstack_blue ...)
+"""
+
+
+def _lib_root_project(root: str) -> str:
+    """The uv project inside a CLICKSTACK_LIB_ROOT checkout: the repository
+    root or its blue/ implementation both work."""
+    if os.path.isfile(os.path.join(root, "pyproject.toml")):
+        return root
+    return os.path.join(root, "blue")
+
+
+def main() -> None:
+    root = os.environ.get("CLICKSTACK_LIB_ROOT")
+    if root:
+        result = subprocess.run(
+            ["uv", "run", "--project", _lib_root_project(root),
+             "python", "-m", "package_clickstack_blue", *sys.argv[1:]])
+        raise SystemExit(result.returncode)
+    try:
+        from package_clickstack_blue import exec  # resolvable only once pinned
+    except ImportError:
+        sys.stderr.write(UNPINNED_ERROR)
+        raise SystemExit(2)
+    exec()
+
+
+if __name__ == "__main__":
+    main()
