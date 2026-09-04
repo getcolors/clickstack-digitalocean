@@ -38,3 +38,12 @@ interchangeably; 7 and 8 prove Compute Provider Standard §4 on a live state.
 - The Vultr side of the package, which `clickstack-vultr` covers.
 - DigitalOcean cloud-firewall behaviour on VPC traffic: nothing in this
   single-node deployment depends on it and no gate exercises it.
+
+## After verification
+
+Deleted the same day under a fresh, explicit authorization, with the one-run
+`COLORS_PAR_COMPUTE_PREVENT_DESTROY=false` override: cleanup play, DNS record,
+`~/.ssh/config` block, compute and firewall, account key, local keypair, in
+that order, exit 0. Verified read-only afterwards that nothing named after the
+profile survives at the provider. The repository, `colors.yml` and the R2
+state remain, so the deployment is re-creatable with `./green create`.
