@@ -5,19 +5,19 @@
       "source": "getcolors/clickstack",
       "sourceType": "github",
       "skillPath": "skills/package-clickstack-blue/SKILL.md",
-      "computedHash": "48aea7741e9efab20ada7c1ffe078aa8b56c48170e9db965f68113d09ca71772"
+      "computedHash": "240884457a389bbd3696189fd878adcbc9ab4719b950b0a02d3d455999e178ff"
     },
     "package-clickstack-green": {
       "source": "getcolors/clickstack",
       "sourceType": "github",
       "skillPath": "skills/package-clickstack-green/SKILL.md",
-      "computedHash": "5ce7a30682bf6856c1009930c8604924a3ea594a69ea1b747852ec696f0bf562"
+      "computedHash": "844f46f6e1bc8ef51c48b5a0bea7c9cf94e60ca7939f53dbbc32fe76b0f71a7e"
     },
     "package-clickstack-red": {
       "source": "getcolors/clickstack",
       "sourceType": "github",
       "skillPath": "skills/package-clickstack-red/SKILL.md",
-      "computedHash": "08383507bf7a160d54ac4827e99564ff91b6fad7b7033c2709997f72920848e3"
+      "computedHash": "d573c074756d9dd4e19488f76015f6f1231376492661ed91288f109729be5b24"
     }
   }
 }
