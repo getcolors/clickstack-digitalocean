@@ -35,10 +35,11 @@ import { homedir } from "node:os";
 // itself (see below). They stay out of a bundled package.json in this
 // directory, which would halt Bun's upward resolution of `package-clickstack-red`
 // and break the development symlink at red/red.
+// Compute and SDK revisions resolve through the package dependency.
+// Repeating the same Git dependencies here breaks Bun cold installs.
 const PINS = {
-  "package-clickstack-red": "github:getcolors/clickstack#237f9514da3309891a2df6794037af5ed6bb65ad",
+  "package-clickstack-red": "github:getcolors/clickstack#8b13a8a8364f8e3c501947aa753f7019339af471",
   "package-once-red": "github:getcolors/once#38e3cd66674a32fb96605e1b17ae6791086ad5c1",
-  "red": "github:getcolors/red#db9bfe61282e2093f4098bf5a6ee0cd10added6e",
 };
 
 // PINS is the only source of versions, as green's inline SHA and blue's PEP
