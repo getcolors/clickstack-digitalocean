@@ -1,6 +1,6 @@
 # Shared compute rollout
 
-Installed package: `getcolors/clickstack` at published revision `9660c87f43260903a8ddb4429c421a6d5ca93cec`.
+Installed package: `getcolors/clickstack` at published revision `c6df637e84f2e43d522694b8b32c96daed3256b2`.
 The installed skill directories and root launchers were copied from a verified
 Skills CLI installation of that revision. The existing skills-lock.json entries were updated from that installation.
 
